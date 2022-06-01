@@ -1,9 +1,9 @@
-import { createServer } from 'http';
-import Koa from 'koa';
-import Router from 'koa-router';
-import cors from 'koa2-cors';
-import koaBody from 'koa-body';
-import { nanoid } from 'nanoid';
+const http = require('http');
+const Koa = require('koa');
+const Router = require('koa-router');
+const cors = require('koa2-cors');
+const koaBody = require('koa-body');
+const { nanoid } = require('nanoid');
 
 const app = new Koa();
 
@@ -35,5 +35,5 @@ router.delete('/notes/:id', async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 const port = process.env.PORT || 7777;
-const server = createServer(app.callback());
+const server = http.createServer(app.callback());
 server.listen(port, () => console.log('server started'));
